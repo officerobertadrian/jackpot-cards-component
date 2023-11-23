@@ -1,0 +1,31 @@
+<div class="jackpot-cards-container">
+  <div class="fireworks" *ngIf="jackpotCardsWinner">
+    <div class="before"></div>
+    <div class="after"></div>
+  </div>
+  <div class="grid-container">
+    <div
+      class="grid-item"
+      [ngClass]="jackpotCard.flipped ? 'flipped' : ''"
+      *ngFor="let jackpotCard of jackpotCardsData; index as i"
+      (click)="flipJackpotCard(jackpotCard, i)"
+    >
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="/assets/icons/casino-logo.png" />
+        </div>
+        <div
+          class="flip-card-back"
+          [ngClass]="{ winner: jackpotCard.name === jackpotCardsWinner }"
+        >
+          <img [src]="jackpotCard.iconPath" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup" *ngIf="jackpotCardsWinner">
+  <div class="text">
+    Congratulations! You won the <span>{{ jackpotCardsWinner }}</span> Jackpot!
+  </div>
+</div>
